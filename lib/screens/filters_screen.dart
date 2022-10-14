@@ -37,7 +37,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
     return SwitchListTile(
       title: Text(title),
       value: currentValue,
-      subtitle: Text(description),
+      subtitle: Text(
+        description,
+        style: TextStyle(color: Colors.black45),
+      ),
       onChanged: updateValue,
     );
   }
