@@ -8,7 +8,7 @@ import 'package:meals_app/screens/meal_detail_screen.dart';
 class MealItem extends StatelessWidget {
   final String id;
   final String title;
-  final String imagrUrl;
+  final String imageUrl;
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
@@ -17,7 +17,7 @@ class MealItem extends StatelessWidget {
     Key? key,
     required this.id,
     required this.title,
-    required this.imagrUrl,
+    required this.imageUrl,
     required this.duration,
     required this.complexity,
     required this.affordability,
@@ -27,13 +27,13 @@ class MealItem extends StatelessWidget {
     switch (complexity) {
       case Complexity.Simple:
         return 'Simple';
-        break;
+
       case Complexity.Challenging:
         return 'Challenging';
-        break;
+
       case Complexity.Hard:
         return 'Hard';
-        break;
+
       default:
         return 'Unknown';
     }
@@ -43,23 +43,26 @@ class MealItem extends StatelessWidget {
     switch (affordability) {
       case Affordability.Affordable:
         return 'Affordable';
-        break;
       case Affordability.Pricey:
         return 'Pricey';
-        break;
       case Affordability.Luxurious:
         return 'Expensive';
-        break;
       default:
         return 'Unknown';
     }
   }
 
   void selectMeal(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(
+    Navigator.of(ctx)
+        .pushNamed(
       MealDetailScreen.routeName,
       arguments: id,
-    );
+    )
+        .then((result) {
+      if (result != null) {
+        // removeItem(result);
+      }
+    });
   }
 
   @override
@@ -82,7 +85,7 @@ class MealItem extends StatelessWidget {
                     topRight: Radius.circular(15),
                   ),
                   child: Image.network(
-                    imagrUrl,
+                    imageUrl,
                     height: 250,
                     width: double.infinity,
                     fit: BoxFit.cover,
